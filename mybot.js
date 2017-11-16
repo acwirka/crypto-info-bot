@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const fs = require("fs");
 const config = require("./config.json");
 const ticker = "https://api.coinmarketcap.com/v1/ticker/";
-let prefix = "!";
+const prefix = "!";
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 
@@ -13,11 +13,11 @@ client.on("message", (message) => {
   	const args = message.content.slice(prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 
- 	if (command === 'cmc') {
+ 	if (command === 'c') {
  		var coin = args[0];
  		
  		var xhr = new XMLHttpRequest();
-		xhr.open('GET', "https://api.coinmarketcap.com/v1/ticker/" + coin, true);
+		xhr.open('GET', ticker + coin, true);
 		xhr.send();
  
 		xhr.onreadystatechange = processRequest;
